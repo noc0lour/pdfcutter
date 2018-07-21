@@ -1,7 +1,7 @@
-
 import os
 from gi.repository import GLib
 import multiprocessing
+
 
 # This should be removed. Instead implement the same functionality inside Pipe.
 class GProcess(multiprocessing.Process):
@@ -27,7 +27,7 @@ class GProcess(multiprocessing.Process):
         self.pipe_r, self.pipe_w = os.pipe()
 
     def wake_parent(self):
-        os.write(self.pipe_w, ' ')
+        os.write(self.pipe_w, b' ')
 
     def _child_event(self, iocontext, event):
         os.read(self.pipe_r, 1)
@@ -41,4 +41,3 @@ class GProcess(multiprocessing.Process):
     def child_event(self):
         if self._child_event_cb is not None:
             self._child_event_cb(self)
-
