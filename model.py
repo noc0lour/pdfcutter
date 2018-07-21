@@ -329,7 +329,7 @@ class Model(GObject.GObject):
 		show_text()
 		write_tif(surface, tmpdir, page)
 		
-		input = [ os.path.join(tmpdir, "%i.tif" % i) for i in xrange(1, page+1) ]
+		input = [ os.path.join(tmpdir, "%i.tif" % i) for i in range(1, page+1) ]
 
 		args = [ 'tiffcp' ]
 		args += input
@@ -399,7 +399,7 @@ class Model(GObject.GObject):
 
 		def do_next():
 			try:
-				iterator.next()
+				next(iterator)
 			except StopIteration:
 				return False
 
@@ -416,7 +416,7 @@ class Model(GObject.GObject):
 
 		def do_next():
 			try:
-				iterator.next()
+				next(iterator)
 			except StopIteration:
 				return False
 
@@ -530,7 +530,7 @@ class Model(GObject.GObject):
 		for line in f.readlines():
 			data = line.split()
 			if len(data) not in [8, 9]:
-				print "Cannot handle line \'%s\'. Ignoring" % line.strip('\n')
+				print("Cannot handle line \'%s\'. Ignoring" % line.strip('\n'))
 				continue
 			b = Box()
 			b.sx = float(data[0])

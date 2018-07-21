@@ -414,14 +414,14 @@ class Page(GooCanvas.CanvasItemSimple, GooCanvas.CanvasItem):
 		if self.get_canvas().grid:
 			cr.save()
 			cr.translate(0, self.y)
-			for x in xrange(1, int(self.width / 72 * 2.54) + 1):
+			for x in range(1, int(self.width / 72 * 2.54) + 1):
 				cr.move_to((int(self.x * scale + x / 2.54 * 72 * scale) + 0.5) / scale, 0)
 				cr.line_to((int(self.x * scale + x / 2.54 * 72 * scale) + 0.5) / scale, self.height)
 				cr.set_line_width(1 / scale)
 				cr.set_dash([4 / scale, 4 / scale])
 
 			cr.translate(self.x, -self.y)
-			for y in xrange(1, int(self.height / 72 * 2.54) + 1):
+			for y in range(1, int(self.height / 72 * 2.54) + 1):
 				cr.move_to(0, (int(self.y * scale + y / 2.54 * 72 * scale) + 0.5) / scale)
 				cr.line_to(self.width, (int(self.y * scale + y / 2.54 * 72 * scale) + 0.5) / scale)
 				cr.set_line_width(1 / scale)
@@ -518,7 +518,7 @@ class BuildView(GooCanvas.Canvas):
 
 		for page in self._pages:
 			page.remove()
-		for box, dbox in self._boxes.iteritems():
+		for box, dbox in self._boxes.items():
 			dbox.remove()
 		self._pages = []
 		self._boxes = {}
@@ -573,7 +573,7 @@ class BuildView(GooCanvas.Canvas):
 
 	def _update_pages(self, min_pages=1):
 		pages = min_pages
-		for box in self._boxes.keys():
+		for box in list(self._boxes.keys()):
 			pages = max(pages, box.dpage + 1)
 		while pages > len(self._pages):
 			self._add_page()

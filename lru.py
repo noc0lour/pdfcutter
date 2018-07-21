@@ -134,7 +134,7 @@ class LRU(object):
                 else:
                     # In CPython, items seems to be faster then iteritems
                     # for small lists (which we have).
-                    l = kwargs.items()
+                    l = list(kwargs.items())
                     l.sort()
                     return (args, tuple(l))
        
@@ -347,7 +347,7 @@ class LRU(object):
     def keys(self):
         """Return list of keys stored.
         """
-        return self._items.keys()
+        return list(self._items.keys())
 
         
     def has_key(self, key):
@@ -417,7 +417,7 @@ class TimedLRU(LRU):
                 else:
                     # In CPython, items seems to be faster then iteritems
                     # for small lists (which we have).
-                    l = kwargs.items()
+                    l = list(kwargs.items())
                     l.sort()
                     return (args, tuple(l))
        

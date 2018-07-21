@@ -367,7 +367,7 @@ class PDFView(GooCanvas.Canvas):
 
 		for page in self._pages:
 			page.remove()
-		for box, dbox in self._boxes.iteritems():
+		for box, dbox in self._boxes.items():
 			dbox.remove()
 		self._pages = []
 		self._boxes = {}
@@ -377,7 +377,7 @@ class PDFView(GooCanvas.Canvas):
 		x = PADDING
 		width = 0
 		height = PADDING
-		for i in xrange(self._model.document.get_n_pages()):
+		for i in range(self._model.document.get_n_pages()):
 			page = Page(self._model, i, x, y, fill_color="black", parent=self._root)
 			self._pages.append(page)
 

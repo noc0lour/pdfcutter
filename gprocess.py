@@ -33,7 +33,7 @@ class GProcess(multiprocessing.Process):
         os.read(self.pipe_r, 1)
         try:
             self.child_event()
-        except Exception, e:
+        except Exception as e:
             import traceback
             traceback.print_exc()
         return True
